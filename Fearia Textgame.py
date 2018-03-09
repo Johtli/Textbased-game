@@ -77,12 +77,13 @@ There is a sockdrawer in the corner. The light in the other room seems miles awa
                         action = action.lower()
                         if action == "look around":
                                 print("This room has three glowing stones with the colours blue, red and white \
-                                lying on a flying pig. The pig looks happy but is stuck in the air by an unknown force") #Lägg till mer beskrivning.
+lying on a flying pig. The pig looks happy but is stuck in the air by an unknown force") #Lägg till mer beskrivning. #Gjort!
                         elif "pet" in action and "pig" in action:
                                 print("The pig seems pleased and oinks happily.")
                         elif action == "inspect":
                                 print ("You inspect the dust in the air.")
                         elif "pick" in action and "up" in action and "light" in action:
+                                global light
                                 light = "picked up"
                                 print("You pick up the light")
                         elif "pick" in action and "up" in action and "lamp" in action:
@@ -115,7 +116,10 @@ There is a sockdrawer in the corner. The light in the other room seems miles awa
                                                 break
                                         else:
                                                 print("Pick a stone of your chosing")
-                                print("Just as the stone drops of the pig the other stones wanishes and a door opens")
+                                print("Just as you take the stone of the pig the other stones wanishes and a door opens.")
+                         elif "open" in action and "door" in action:
+                                return "Hallway"
+                       
                                 
     		
 
@@ -129,7 +133,17 @@ There is a sockdrawer in the corner. The light in the other room seems miles awa
                                 elif clueless >= 10:
                                         print("Normal human behavior is: looking around, inspecting different objects and walking in different directions")
         
-  	
+        elif room == "Hallway":
+                print("The door opens but when you look inside the next room it slams you into a dark hallway.")
+                while True: 
+                        action = input("What will you do? \n")
+                        action = action.lowercase
+                        if light == "picked up":
+                                print("Because of the kersosene lamp you see a trap door.")
+                        ####elif light =! "picked up":
+                                #print("You feel a great pain one moment and in the next, everything goes dark. \n\
+#Suddenly your journey has ended")
+                                #start over game
   	####
 room = "start"
 while room != "end":
