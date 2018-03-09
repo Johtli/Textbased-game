@@ -76,10 +76,13 @@ There is a sockdrawer in the corner. The light in the other room seems miles awa
                                                 print("Normal human behavior is: looking around, inspecting different objects and walking in different directions")
                                                 print ("Write something sensible.")
                                         clueless += 1
-                                elif look == "yes" and clueless >= 3:
-                                        print("Normal human behavior is: looking around, inspecting different objects and walking in different directions")
-                                        print ("Write something sensible.")
-                                        clueless += 1
+                                elif look == "yes":
+                                        if clueless < 3:
+                                                print ("Huh, that didn't do anything.")
+                                                clueless += 1
+                                        else:
+                                                print("Normal human behavior is: looking around, inspecting different objects and walking in different directions")
+                                                print ("Write something sensible.")                                      
         elif room == "light":
                 clueless = 0
                 print("Ten short steps and the light is in your reach. The light comes from a kerosene lamp.")
