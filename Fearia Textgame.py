@@ -35,9 +35,8 @@ def handle_room(room):
                         if action == "look around":
                                 #When you look around this happens
                                 print ("You look around. The eerie silence crushes your eardrums. \
-                                You are standing in a stone room made of bricks.\n\n\
-                                There is a sockdrawer in the corner. The light in the other room seems miles away. \n")
-                                print ("")
+You are standing in a stone room made of bricks.\n\n\
+There is a sockdrawer in the corner. The light in the other room seems miles away. \n")
                         elif "light" in action or "other room" in action:
                                 return "light"
                                 #breaking the loop and you walk into the next room
@@ -55,7 +54,7 @@ def handle_room(room):
                                                 print ("It seems oddly relevant to your situation.")
                                         elif "take" in action:
                                                 print("The book is now in your satchel") #to give a response to that action
-                                        elif "inspect" in action or "look" in atcion:
+                                        elif "inspect" in action or "look" in action:
                                                 print ("You take a closer look at the drawer. Seems like an ordinary sockdrawer, made of dark oak and passed down through generations. It reminds you of times past.")
                                         else:
                                                 print ("You lose intrest and take a step back.")
