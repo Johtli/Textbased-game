@@ -34,8 +34,9 @@ def handle_room(room):
                         action = action.lower()
                         if action == "look around":
                                 #When you look around this happens
-                                print ("You look around. The eerie silence crushes your eardrums. You are standing in a stone room made of bricks.\n\n\
-There is a sockdrawer in the corner. The light in the other room seems miles away. \n")
+                                print ("You look around. The eerie silence crushes your eardrums. \
+                                You are standing in a stone room made of bricks.\n\n\
+                                There is a sockdrawer in the corner. The light in the other room seems miles away. \n")
                                 print ("")
                         elif "light" in action or "other room" in action:
                                 return "light"
@@ -52,12 +53,15 @@ There is a sockdrawer in the corner. The light in the other room seems miles awa
                                                 print ("\nTantalized, you open it and read the first passage you see:")
                                                 print ("Fencing, fighting, torture, revenge, giants, monsters, chases, escapes, true love and miracles!\n") #Kanske ta bort \n, få se.
                                                 print ("It seems oddly relevant to your situation.")
-                                        elif "inspect" in action:
+                                        elif "take" in action:
+                                                print("The book is now in your satchel") #to give a response to that action
+                                        elif "inspect" in action or "look" in atcion:
                                                 print ("You take a closer look at the drawer. Seems like an ordinary sockdrawer, made of dark oak and passed down through generations. It reminds you of times past.")
                                         else:
                                                 print ("You lose intrest and take a step back.")
                                                 break
                         else:
+                                print("Huh, that didn´t do anything")
                                 if clueless == 3:
                                         print("You suddenly feel the urge to look around. Express the urge!")
                                 elif clueless >= 4 and clueless <= 10:
@@ -73,31 +77,51 @@ There is a sockdrawer in the corner. The light in the other room seems miles awa
                         action = input("What will you do? \n")
                         action = action.lower()
                         if action == "look around":
-                                print("This room also has three glowing stones with the colours blue, red and white in it.") #Lägg till mer beskrivning.
+                                print("This room has three glowing stones with the colours blue, red and white \
+                                lying on a flying pig. The pig looks happy but is stuck in the air by an unknown force") #Lägg till mer beskrivning.
+                        elif "pet" in action and "pig" in action:
+                                print("The pig seems pleased and oinks happily.")
                         elif action == "inspect":
                                 print ("You inspect the dust in the air.")
                         elif "pick" in action and "up" in action and "light" in action:
                                 light = "picked up"
+                                print("You pick up the light")
+                        elif "pick" in action and "up" in action and "lamp" in action:
+                                light = "picked up"
+                                print("You pick up the light")
+                        elif "pick" in action and "up" in action and "kerosene lamp" in action:
+                                light = "picked up"
+                                print("You pick up the light")
                         elif "inspect" in action and "stone" in action: #Add pick up stones, take stones, inspect stones.
                                 ####You should only be able to take the stone if you have not already. do if stone == "untaken":
                                 #Maybe a brief presentation of the stones instead, and the only vision you see is the one of the stone you took?
-                                print("You touch the stones. The blue stone shows you a vision of stars and it feels like you are in a completely different world. \n\
-The white stone makes you belive that you are the chosen and your faith is strong.\n\
-The red stone makes you visualize your strenght and brute force. You feel strong. \n\nPick up a stone of your chosing. \n")
-                                stone = input("") #Which stone you pick up.
+                                print("You touch the stones. \n\
+             The blue stone shows you a vision of stars and it feels like you are in a completely different world. \n\
+             The white stone makes you belive that you are the chosen and your faith is strong.\n\
+             The red stone makes you visualize your strenght and brute force. You feel strong.")
+                                stone = input("\n\nPick up a stone of your chosing. \n") #Which stone you pick up.
                                 stone = stone.lower()
-                                if "blue" in stone:
-                                        print ("You take the blue stone.")
-                                        proffession = classes[0] #Your proffession (class) becomes classes[0].
-                                elif "white" in stone:
-                                        print ("You take the white stone.")
-                                        proffession = classes[2]
-                                elif "red" in stone:
-                                        print ("You take the red stone.")
-                                        proffession = classes[1]
+                                while True:
+                                        if "blue" in stone:
+                                                print ("You take the blue stone.")
+                                                proffession = classes[0] #Your proffession (class) becomes classes[0].
+                                                break
+                                        elif "white" in stone:
+                                                print ("You take the white stone.")
+                                                proffession = classes[2]
+                                                break
+                                        elif "red" in stone:
+                                                print ("You take the red stone.")
+                                                proffession = classes[1]
+                                                break
+                                        else:
+                                                print("Pick a stone of your chosing")
+                                print("Just as the stone drops of the pig the other stones wanishes and a door opens")
+                                
     		
 
                         else:
+                                print("Huh that didn´t work.") #to atleast give som response
                                 clueless += 1
                                 if clueless == 3:
                                         print("You suddenly feel the urge to look around. Express the urge!")
