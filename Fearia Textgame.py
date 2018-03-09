@@ -26,7 +26,10 @@ print("Text based Game Name, 2018 created by Joar and Johtli")
 #import sys
 #clueless = 0 clueless i room = "start" är odefinerat. man måste definera i varje rum.
 def handle_room(room):
+        global inventory
+        inventory = []
         if room == "start":
+                look = "no"
                 clueless = 0
                 print ("The room is dark, you see a candle standing in an adjacent room.")
                 while True:
@@ -37,6 +40,7 @@ def handle_room(room):
                                 print ("You look around. The eerie silence crushes your eardrums. \
 You are standing in a stone room made of bricks.\n\n\
 There is a sockdrawer in the corner. The light in the other room seems miles away. \n")
+                                look = "yes"
                         elif "light" in action or "other room" in action:
                                 return "light"
                                 #breaking the loop and you walk into the next room
@@ -52,23 +56,30 @@ There is a sockdrawer in the corner. The light in the other room seems miles awa
                                                 print ("\nTantalized, you open it and read the first passage you see:")
                                                 print ("Fencing, fighting, torture, revenge, giants, monsters, chases, escapes, true love and miracles!\n") #Kanske ta bort \n, få se.
                                                 print ("It seems oddly relevant to your situation.")
-                                        elif "take" in action:
+                                        elif "take" in action or "pick up" in action:
                                                 print("The book is now in your satchel") #to give a response to that action
+                                                ### Inventory
+                                                inventory.append("The Princess Bride")
                                         elif "inspect" in action or "look" in action:
                                                 print ("You take a closer look at the drawer. Seems like an ordinary sockdrawer, made of dark oak and passed down through generations. It reminds you of times past.")
                                         else:
                                                 print ("You lose intrest and take a step back.")
                                                 break
                         else:
-                                print("Huh, that didn´t do anything")
-                                if clueless == 3:
-                                        print("You suddenly feel the urge to look around. Express the urge!")
-                                elif clueless >= 4 and clueless <= 10:
-                                        print("Express the urge")
-                                elif clueless >= 10:
+                                if look == "no":
+                                        print("Huh, that didn´t do anything")
+                                        if clueless == 3:
+                                                print("You suddenly feel the urge to look around. Express the urge!")
+                                        elif clueless >= 4 and clueless <= 10:
+                                                print("Express the urge")
+                                        elif clueless >= 10:
+                                                print("Normal human behavior is: looking around, inspecting different objects and walking in different directions")
+                                                print ("Write something sensible.")
+                                        clueless += 1
+                                elif look == "yes" and clueless >= 3:
                                         print("Normal human behavior is: looking around, inspecting different objects and walking in different directions")
                                         print ("Write something sensible.")
-                                clueless += 1
+                                        clueless += 1
         elif room == "light":
                 clueless = 0
                 print("Ten short steps and the light is in your reach. The light comes from a kerosene lamp.")
@@ -79,7 +90,7 @@ There is a sockdrawer in the corner. The light in the other room seems miles awa
                                 print("This room has three glowing stones with the colours blue, red and white \
 lying on a flying pig. The pig looks happy but is stuck in the air by an unknown force") #Lägg till mer beskrivning. #Gjort!
                         elif "pet" in action and "pig" in action:
-                                print("The pig seems pleased and oinks happily.")
+                                print("You pet the pig. It seems pleased and oinks happily.")
                         elif action == "inspect":
                                 print ("You inspect the dust in the air.")
                         elif "pick" in action and "up" in action and "light" in action:
@@ -99,9 +110,10 @@ lying on a flying pig. The pig looks happy but is stuck in the air by an unknown
              The blue stone shows you a vision of stars and it feels like you are in a completely different world. \n\
              The white stone makes you belive that you are the chosen and your faith is strong.\n\
              The red stone makes you visualize your strenght and brute force. You feel strong.")
-                                stone = input("\n\nPick up a stone of your chosing. \n") #Which stone you pick up.
-                                stone = stone.lower()
+                                
                                 while True:
+                                        stone = input("\n\nPick up a stone of your chosing. \n") #Which stone you pick up.
+                                        stone = stone.lower()
                                         if "blue" in stone:
                                                 print ("You take the blue stone.")
                                                 proffession = classes[0] #Your proffession (class) becomes classes[0].
@@ -114,8 +126,7 @@ lying on a flying pig. The pig looks happy but is stuck in the air by an unknown
                                                 print ("You take the red stone.")
                                                 proffession = classes[1]
                                                 break
-                                        else:
-                                                print("Pick a stone of your chosing")
+                                        
                                 print("Just as you take the stone of the pig the other stones wanishes and a door opens.")
                          elif "open" in action and "door" in action:
                                 return "Hallway"
