@@ -110,7 +110,7 @@ There is a sockdrawer in the corner. The light in the other room seems miles awa
                                                 print ("Huh, that didn't work.")
                                         else:
                                                 print("Normal human behavior is: looking around, inspecting different objects and walking in different directions")
-                                        clueless += 1 
+                                        clueless += 1
         elif room == "light":
                 #Tog bort variabeln "light", onödig om man lägger till lampan till inventory.
                 clueless = 0
@@ -131,11 +131,11 @@ There is a sockdrawer in the corner. The light in the other room seems miles awa
                                         print("This room has three glowing stones with the colours blue, red and white, \
 lying on a flying pig. The pig looks happy, but is stuck in the air by an unknown force.\n")
                                         print ("There is a door opposite to the dark room. The door seems closed.")
-                                        
+
                                 elif taken == "yes" and "Kerosene Lamp" not in inventory:
                                         print ("You look around. The room is lit up by a kerosene lamp.")
                                         print ("The only things appart from taht are two doors, one leading to the dark room and one leading to a pitch black hallway.")
-                                        
+
                         elif "dark room" in action:
                                 print ("You go into the dark room.")
                                 return "start"
@@ -215,7 +215,7 @@ The red stone makes you visualize your strenght and brute force. You feel strong
                                 else:
                                         print("Normal human behavior is: looking around, inspecting different objects and walking in different directions")
                                         clueless += 1
-        
+
         elif room == "hallway":
                 look = "no"
                 print("Just as you approach it, the door creaks open.")
@@ -225,7 +225,7 @@ The red stone makes you visualize your strenght and brute force. You feel strong
 illuminated only by your lamp. You can barely see the other end.")
                 else:
                         print ("You take a step forwards to take a look, but suddenly the door slams shut! You're pushed into a pitch black hallway.")
-                while True: 
+                while True:
                         action = input("What will you do? \n")
                         action = action.lower()
                         if "look" in action or "inspect" in action:
