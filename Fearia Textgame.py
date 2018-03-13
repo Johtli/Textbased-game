@@ -1,10 +1,9 @@
 #Commands: Look around, inspect, take, pick up, go west, east, north and south, climb, descend look left and right, go forward, backwards left and right
 #Created by Joar and Johan, started 08 march 2018
 #Fiara text game
-#sys.exit()
 import time
 #Defining all the classes:
-#Classes fungerar i room == "light", men clueless fungerar inte i "start" om man definerar den utanför funktionen... Que?
+#Listor funkar om man definerar dem utanför funktionen, variablar gör inte det.
 c, r = 5, 3 #Number of tags, number of classes.
 classes = [[0 for x in range(c)] for y in range(r)] #Hittade koden på stack overflow (tror jag). Fattar inte 100% hur den funkar, men rätt användbar.
 #classes[0] is one class, [1] another etc.
@@ -24,12 +23,10 @@ classes[2][2] = 20 #Magic damage/points, placeholder value.
 classes[2][3] = 25 #Armor, placeholder value.
 classes[2][4] = 150 #Health, placeholder value.
 print("Text based Game Name, 2018 created by Joar and Johtli.\n")
-#clueless = 0 clueless i room = "start" är odefinerat.
 inventory = []
 rooms = ["start"] #Lista med de senaste rummet man var i, så att man ska kunna skriva "go back" så går man till det rummet. rooms[1] är det förra rummet man var i.
 allrooms = [] #Lista med alla rum man har varit i.
 def handle_room(room):
-        #global inventory
         if room == "start":
                 clueless = 0
                 look = "no"
@@ -258,7 +255,6 @@ when you did. Taking great care not to activate any hidden traps, you make your 
         else:
                 print ("Oops, room did not have a value. Returning to the last room you were in...")
                 return rooms[1]
-  	####
 room = "start"
 while room != "end":
         room = handle_room(room)
