@@ -43,12 +43,17 @@ def handle_room(room):
                 while True:
                         action = input("What will you do? \n")
                         action = action.lower()
-                        if action == "look around":
+                        if "look around" in action and not "Kerosene Lamp" in Va.inventory:
                                 #When you look around this happens
                                 look = "yes"
                                 print ("You look around. The eerie silence crushes your eardrums. \
 You are standing in a stone room made of bricks.\n\n\
 There is a sockdrawer in the corner. The light in the other room seems miles away. \n")
+                        elif "look around" in action and "Kerosene Lamp" in Va.inventory:
+                                look = "yes"
+                                print ("You look around. The eerie silence crushes your eardrums. \
+You are standing in a stone room made of bricks.\n\n\
+There is a sockdrawer in the corner.  \n")
                         elif "light" in action or "room" in action or "lamp" in action:
                                 return "light"
                         #elif action == "vi är bäst": dröm om at hoppa till vilket rum man vill
@@ -74,7 +79,7 @@ There is a sockdrawer in the corner. The light in the other room seems miles awa
                                                         else:
                                                                 print ("The drawer is already open. There is a book, 'The Princess Bride', inside.")
                                                 else:
-                                                        print ("You listen to the voices in your head and open the drawer. Inside you find a book, titled 'The Princess Bride'.\n")
+                                                        print ("You listen to the voices in your head and open the drawer. There is a mysterios absence of socks inside you instead find a book, titled 'The Princess Bride'.\n")
                                                         time.sleep(b)
                                                         print ("Tantalized, you open it and read the first passage you see:")
                                                         print ("Fencing, fighting, torture, revenge, giants, monsters, chases, escapes, true love and miracles!\n")
@@ -83,7 +88,7 @@ There is a sockdrawer in the corner. The light in the other room seems miles awa
                                         elif "take" in action and "book" not in action:
                                                 print ("You try to grasp something abstract, but it slipped through your fingers. Try taking something that's more real.\n")
                                         elif "take" in action and "book" in action:
-                                                if drawer == "open":
+                                                if Va.drawer == "open":
                                                         if "The Princess Bride" in Va.inventory:
                                                                  print ("You cannot take a book that is not there.")
                                                         else:
@@ -155,12 +160,17 @@ lying on a flying pig. The pig looks happy, but is stuck in the air by an unknow
                         elif "dark room" in action:
                                 print ("You go into the dark room.")
                                 return "start"
-                        elif "back" in action:
+                        elif "go back" in action:
                                 if Va.rooms[1] == "start":
                                         print ("You go back into the dark room.")
                                         return "start"
                         elif "pet" in action and "pig" in action:
                                 print("The pig seems pleased and oinks happily.")
+                                pig = "petted"
+                        elif "oink" and "back" in action and pig == "petted":
+                                print("You oink back and the pig accepts you as its kin.")
+                                Va.achivement.append ("pigwisperer")
+                                print("You are now considred a pigwisperer! And may consider all pigs as friends.")
                         elif action == "inspect":
                                 print ("You inspect the dust in the air.")
                         elif "pick" in action and "up" in action and "light" in action or "pick" in action and "up" in action and "lamp" in action:
@@ -346,7 +356,7 @@ You are met with an intimidating door. You stare at it. It's icy face stares bac
             print ("You pierce the fog. Slowly but surely, with every step you take, the fog dissapates. After an amount of steps uncountable to mere mortals, the fog is gone. \
 You turn around, expecting to see the manor's looming body, but you can only see dust, lingering for a moment until even the dust is gone.")
             useless = input("A thunderous voice states: What is your wish to make happen?\n")
-            print("The voice states: Im not a genie you silly bastard. You hear a earth-shattering . Suddenly everything goes dark.")
+            print("The voice states: Im not a genie you silly bastard. \nYou hear a earth-shattering rumble and everything goes dark.")
         elif room == "death":
                 print ("Your journey has come to a tragic end.") #Man måste starta om spelet när man dör eller? Antingen det eller så finns det checkpoint
         else:

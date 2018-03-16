@@ -4,3 +4,4 @@ allrooms = [] #Lista med alla rum man har varit i.
 drawer = "closed" #Drawer in room "start"
 taken = "no" #If you've taken a stone in room "light"
 clas = 0
+achivement = []
