@@ -43,7 +43,7 @@ def handle_room(room):
                         action = input("What will you do? \n")
                         action = action.lower()
                         print ("")
-                        if action == "look around":
+                        if "look around" in action and not "Kerosene Lamp" in Va.inventory:
                                 #When you look around this happens
                                 look = "yes"
                                 print ("You look around. The eerie silence crushes your eardrums. \
@@ -81,14 +81,14 @@ There is a sockdrawer in the corner. The light in the other room seems miles awa
                                                         else:
                                                                 print ("The drawer is already open. There is a book, 'The Princess Bride', inside.")
                                                 else:
-                                                        print ("You listen to the voices in your head and open the drawer. Inside you find a book, titled 'The Princess Bride'.\n")
+                                                        print ("You listen to the voices in your head and open the drawer. There is a mysterios absence of socks inside you instead find a book, titled 'The Princess Bride'.\n")
                                                         time.sleep(b)
                                                         print ("Tantalized, you open it and read the first passage you see:")
                                                         print ("Fencing, fighting, torture, revenge, giants, monsters, chases, escapes, true love and miracles!\n")
                                                         print ("It seems oddly relevant to your situation.")
                                                         drawer = "open"
                                         elif "take" in action and "book" in action:
-                                                if drawer == "open":
+                                                if Va.drawer == "open":
                                                         if "The Princess Bride" in Va.inventory:
                                                                  print ("You cannot take a book that is not there.")
                                                         else:
@@ -176,8 +176,17 @@ There is a sockdrawer in the corner. The light in the other room seems miles awa
                         elif "dark room" in action or "back" in action:
                                 print ("You go into the dark room.\n")
                                 return "start"
+                        elif "go back" in action:
+                                if Va.rooms[1] == "start":
+                                        print ("You go back into the dark room.")
+                                        return "start"
                         elif "pet" in action and "pig" in action:
-                                print("The pig seems pleased and oinks happily.\n")
+                                print("The pig seems pleased and oinks happily.")
+                                pig = "petted"
+                        elif "oink" and "back" in action and pig == "petted":
+                                print("You oink back and the pig accepts you as its kin.")
+                                Va.achivement.append ("pigwisperer")
+                                print("You are now considred a pigwisperer! And may consider all pigs as friends.")
                         elif action == "inspect":
                                 print ("You inspect the dust in the air.\n")
                         elif "take" in action and "pig" in action:
