@@ -2,6 +2,7 @@
 #Created by Joar and Johan, started 08 march 2018
 #Fiara text game
 import time
+import os
 import Va #Variables
 #Defining all the classes:
 #Listor funkar om man definerar dem utanför funktionen, variablar gör inte det.
@@ -187,6 +188,7 @@ There is a sockdrawer in the corner. The light in the other room seems miles awa
                                 print("You oink back and the pig accepts you as its kin.")
                                 Va.achivement.append ("pigwisperer")
                                 print("You are now considred a pigwisperer! And may consider all pigs as friends.")
+                                ####
                         elif action == "inspect":
                                 print ("You inspect the dust in the air.\n")
                         elif "take" in action and "pig" in action:
@@ -270,9 +272,9 @@ The red stone makes you visualize your strenght and brute force. Strenght pulses
                     print("Just as you approach it, the door creaks open.")
                     time.sleep(a)
                     if "Kerosene Lamp" in Va.inventory:
-                            print ("You take a step forwards to take a look, but suddenly the door slams shut! You're pushed into a hallway, \nilluminated only by your lamp. You can barely see the other end.")
+                            print ("You take a step forwards to take a look, but the door slams shut! You're pushed into a hallway, \nilluminated only by your lamp. You can barely see the other end.")
                     else:
-                            print ("You take a step forwards to take a look, but suddenly the door slams shut! You're pushed into a pitch black hallway.")
+                            print ("You take a step forwards to take a look, but the door slams shut! You're pushed into a pitch black hallway.")
                 while True:
                         forwards = "no"
                         action = input("What will you do? \n")
@@ -328,8 +330,8 @@ The red stone makes you visualize your strenght and brute force. Strenght pulses
                                                     print ("The now pulverized door gives way to your attack, revealing a dark night sky. \nWhat is up with this strange aura? You stumble outside and the door closes behind you.")
                                                     return "courtyard"
                                         else:
-                                                print("You step forwards, suddenly jumping to the side as you notice a trapdoor just where you would have walked.")
-                                                print ("You thank your gods that you took the lamp and saw the trapdoor when you did.\n")
+                                                print("You step forwards, stopping your foot an inch above an abyssal gap in the floor.")
+                                                print ("You thank your gods that you took the lamp and saw it when you did.\n")
                                                 print ("Taking great care not to activate any hidden traps, you make your way to the end of the hallway.\n")
                                                 print ("You are met with an intimidating door. You stare at it. It's icy face stares back.\n")
                                                 time.sleep(c)
@@ -400,7 +402,7 @@ The red stone makes you visualize your strenght and brute force. Strenght pulses
                         print ("Perhaps you should look at the body first.")
                 elif "body" in action:
                     body = "looted"
-                    print ("You loot the body.")
+                    print ("You loot the body.") #Add the items! ####
                 elif "inventory" in action:
                         print ("Inventory:                                   [%d/10][Satchel]" %(len(Va.inventory)))
                         if len(Va.inventory) != 0:
@@ -423,19 +425,51 @@ The red stone makes you visualize your strenght and brute force. Strenght pulses
             useless = input("A thunderous voice booms: What is your wish?\n")
             print ("")
             useless = list(useless)
-            useless.insert(1,useless[0].upper())
-            useless.pop(0)
+            useless[0] = useless[0].upper()
             useless = "".join(useless)
             #Make the first letter of useless into a upper case letter.
             print("The voice replies: '%s'? I'm not a genie! \nThe sound grows lowder."%(useless))
-            time.sleep(b)
-            print ("Suddenly everything goes dark.")
-            time.sleep(b)
+            time.sleep(c+b)
+            os.system('cls') #Clears the console.
+            time.sleep(c)
+            print ("Everything went dark.\n")
+            time.sleep(c+b)
+            return "bandits"
+        elif room == "bandits":
+            blindfold = "on"
+            print ("You open your eyes. It is still dark.")
+            action = input("What will you do?\n") ####Do so you can move him or something.
+            action = action.lower()
+            print ()
+            if "look around" in action:
+                if blindfold == "on":
+                    print ("You try to look around, but there is a thick darkness clouding your vision. Try using some other senses.\n")
+                else:
+                    print ("You are sitting in the corner of a small room.\n A man is sitting next to you, sleeping. His face is covered by a mask.\n He is blocking the only door leading out of the room.\n")
+            elif "smell" in action:
+                print ("You take in the smell of your surroundings. The smell of liquor invades your mind.\n")####
+            elif "feel" in action:
+                if blindfold == "on":
+                    print ("You run your fingers across your eyes. There seems to be a blindfold on your eyes.\n")
+                else:
+                    print ("You run your fingers across the floor. It is full of splinters and covered with dust and grime.\n")
+            elif "taste" in action:
+                print ("You taste the air. There is a pleasant hint of magic bacon in the air, but it is quickly overtaken by a smell of foul and cheap wisky.\n")
+            elif "hear" in action:
+                print ("You listen intently. You discern a faint murmur coming from another room.\n")
+            elif "blindfold" in action:
+                print ("You remove the blindfold.\n")
+            #Man får reda på en banditräd på en karavan.
+        elif room == "city gate": #Add a castle?
+            if "city gate" not in Va.alrooms: #If it is your first time at the city gate.
+                print ("Welcome to Ordún!\nYou stand at the gate of the great city.\n")
+            else:
+                print ("You stand at the gate of the great city.\n")
         elif room == "death":
                 print ("Your journey has come to a tragic end.") #Man måste starta om spelet när man dör eller? Antingen det eller så finns det checkpoints
         else:
-                print ("Oops, room did not have a name. Returning to the last room you were in...")
-                time.sleep(3) #Should always be 3 and not c, since you don't want your computer to crash.
+                print ("Error: handle_room(room) is not given. Returning to the last room you were in...")
+                time.sleep(3) #Should always be 3 and not c, since you don't want your terminal to crash.
                 return Va.rooms[1]
 room = "start"
 while room != "end":
