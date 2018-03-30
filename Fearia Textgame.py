@@ -55,6 +55,9 @@ There is a sockdrawer in the corner. The light in the other room seems miles awa
                             #return input("Enter room to teleport\n")
                         elif action == "ca":
                             return "courtyard"
+                        elif "tele" in action:
+                            print ("You trying to teleport. What room is the target?")
+                            return input()
                         elif "inventory" in action:
                             print ("Inventory:                                   [%d/10][Satchel]" %(len(Va.inventory)))
                             if len(Va.inventory) != 0:
@@ -461,8 +464,8 @@ The red stone makes you visualize your strenght and brute force. Strenght pulses
                 print ("You remove the blindfold.\n")
             #Man får reda på en banditräd på en karavan.
         elif room == "city gate": #Add a castle?
-            if "city gate" not in Va.alrooms: #If it is your first time at the city gate.
-                print ("Welcome to Ordún!\nYou stand at the gate of the great city.\n")
+            if Va.allrooms.count("city gate") < 2: #If it is your first time at the city gate.
+                print ("You have arived at the great city.\nWelcome to Ordún!\n")
             else:
                 print ("You stand at the gate of the great city.\n")
         elif room == "death":
